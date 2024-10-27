@@ -51,6 +51,13 @@ const PrevNext = ({ prev, next, manga }: Props) => {
         {"<<"} Previous
       </Link>
       <Link
+        to={`/manga/${manga}`}
+        className="border-white border p-3"
+        prefetch="intent"
+      >
+        Details page
+      </Link>
+      <Link
         to={`/manga/${manga}/${next}`}
         className="border-white border p-3"
         prefetch="intent"
