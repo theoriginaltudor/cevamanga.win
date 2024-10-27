@@ -1,11 +1,10 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, useLoaderData, useParams } from "@remix-run/react";
 import { manga } from "~/types/manga";
+import { domain } from "./manga";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const apiResponse = await fetch(
-    new URL("http://localhost:3000/api/manga/" + params.id)
-  );
+  const apiResponse = await fetch(new URL(`${domain}/api/manga/${params.id}`));
   const objectResponse: manga = await apiResponse.json();
   return json({ ...objectResponse });
 };

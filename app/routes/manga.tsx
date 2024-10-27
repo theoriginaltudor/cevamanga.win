@@ -2,12 +2,12 @@ import { LoaderFunctionArgs } from "@remix-run/node";
 import { Form, json, Link, useLoaderData } from "@remix-run/react";
 import { mangaList } from "~/types/managList";
 
+export const domain = process.env.BACKEND_URL || "http://localhost:3000";
+
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
-  const apiUrl = q
-    ? "http://localhost:3000/api/search/" + q
-    : "http://localhost:3000/api/mangaList";
+  const apiUrl = q ? `${domain}/api/search/${q}` : `${domain}/api/mangaList`;
   const apiResponse = await fetch(new URL(apiUrl));
   const objectResponse: mangaList = await apiResponse.json();
   return json({ ...objectResponse });
