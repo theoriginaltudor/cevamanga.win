@@ -15,17 +15,17 @@ export default function MangaPage() {
   const params = useParams();
   return (
     <div className="flex flex-col items-center pt-10 gap-10">
-      <div className="w-1/2 border rounded-lg">
-        <div className="flex gap-8">
+      <div className="w-11/12 lg:w-1/2 border rounded-lg">
+        <div className="flex gap-8 overflow-hidden">
           <img src={imageUrl} alt="" width={200} />
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 pt-8">
             <h1 className="text-2xl">{name}</h1>
             <p>Status: {status}</p>
             <p>Genres: {genres.toString()}</p>
           </div>
         </div>
         <hr />
-        <ul>
+        <ul className="flex flex-col gap-2 ">
           {chapterList
             .sort(
               (a, b) =>
@@ -34,7 +34,7 @@ export default function MangaPage() {
             )
             .map(({ name, id, view }) => (
               <Link to={`/manga/${params.id}/${id}`} key={id} prefetch="intent">
-                {name} - {view}
+                <div className="text-xl p-3 border-b">{name}</div>
               </Link>
             ))}
         </ul>
